@@ -148,6 +148,14 @@
             <version>2.1.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.18</version>
+            <scope>provided</scope>
+        </dependency>
+
+
     </dependencies>
 
     <build>
@@ -170,24 +178,6 @@
                     <args>
                         <arg>-target:jvm-1.8</arg>
                     </args>
-                </configuration>
-            </plugin>
-            <!--eclipse的插件-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-eclipse-plugin</artifactId>
-                <configuration>
-                    <downloadSources>true</downloadSources>
-                    <buildcommands>
-                        <buildcommand>ch.epfl.lamp.sdt.core.scalabuilder</buildcommand>
-                    </buildcommands>
-                    <additionalProjectnatures>
-                        <projectnature>ch.epfl.lamp.sdt.core.scalanature</projectnature>
-                    </additionalProjectnatures>
-                    <classpathContainers>
-                        <classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER</classpathContainer>
-                        <classpathContainer>ch.epfl.lamp.sdt.launching.SCALA_CONTAINER</classpathContainer>
-                    </classpathContainers>
                 </configuration>
             </plugin>
             <plugin>

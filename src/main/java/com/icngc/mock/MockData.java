@@ -185,7 +185,7 @@ public class MockData {
         String date = DateUtils.getTodayDate();
         List<Row> rows = new LinkedList<>();
 
-        BufferedWriter bw = new BufferedWriter(new FileWriter("date/date.log"));
+//        BufferedWriter bw = new BufferedWriter(new FileWriter("date/date.log"));
 
         //每天有一百个用户访问电商品台
         for (int i = 0; i < 100; i++) {
@@ -196,10 +196,11 @@ public class MockData {
                 //UUID:生成全球唯一的一个字符串标识符
                 String sessionId = UUID.randomUUID().toString().replace("-", "");
                 //每次会话随机访问页面
-                randomAccessPage(rows, date, bw, userId, sessionId);
+//                randomAccessPage(rows, date, bw, userId, sessionId);
+                randomAccessPage(rows, date, userId, sessionId);
             }
         }
-        bw.close();
+//        bw.close();
 
         JavaRDD<Row> rowsRDD = sc.parallelize(rows);
 
@@ -233,7 +234,7 @@ public class MockData {
      * @param sessionId
      * @throws IOException
      */
-    private static void  randomAccessPage(List<Row> rows, String date, BufferedWriter bw, long userId, String sessionId) throws IOException {
+    private static void  randomAccessPage(List<Row> rows, String date, long userId, String sessionId) throws IOException {
         String baseActionTime = date + " " + StringUtils.fulfuill(String.valueOf(random.nextInt(24)));
         //每次会话期间一个用户访问1~100个页面
         //每循环一次，构建一个Row的实例，该实例中的数据最终用来作为hive表user_visit_action中的一条记录
@@ -243,10 +244,10 @@ public class MockData {
             long pageId = random.nextInt(100);
             String actionTime = baseActionTime + ":" + StringUtils.fulfuill(String.valueOf(random.nextInt(60))) + ":" + StringUtils.fulfuill(String.valueOf(random.nextInt(60)));
 
-            if (actionTime.length() != 19) {
-                bw.write(actionTime);
-                bw.newLine();
-            }
+//            if (actionTime.length() != 19) {
+//                bw.write(actionTime);
+//                bw.newLine();
+//            }
 
             String searchKeyword = null;
             Long clickProductId = null;
